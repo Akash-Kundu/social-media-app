@@ -4,6 +4,7 @@ import {yupResolver} from "@hookform/resolvers/yup"
 import {addDoc, collection} from "firebase/firestore"
 import { auth, dataBase } from "../../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { Link } from "react-router-dom"
 
 interface createFormType {
     title: string;
@@ -39,7 +40,7 @@ export const CreateForm = () => {
                 <textarea placeholder="Description..." {...register("description")} />
                 <p className="error" style={{color: "red"}}>{errors.description?.message}</p>
                 
-                <input className="submit" type="submit" />
+                <Link to="/"><input className="submit" type="submit" /></Link>
             </form>
         </div>
     )
