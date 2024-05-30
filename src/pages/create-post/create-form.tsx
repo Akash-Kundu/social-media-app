@@ -4,7 +4,8 @@ import {yupResolver} from "@hookform/resolvers/yup"
 import {addDoc, collection} from "firebase/firestore"
 import { auth, dataBase } from "../../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link, Route, Routes } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+
 
 
 interface createFormType {
@@ -13,6 +14,7 @@ interface createFormType {
 }
 
 export const CreateForm = () => {
+    const navigate = useNavigate();
     const [user] = useAuthState(auth)
     const schema = yup.object().shape({
         title: yup.string().required("You must add a title"),
@@ -31,6 +33,7 @@ export const CreateForm = () => {
             username: user?.displayName,
             userId: user?.uid,
         })
+        navigate("/");
         
         
     }
