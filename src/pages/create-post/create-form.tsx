@@ -33,7 +33,7 @@ export const CreateForm = () => {
             username: user?.displayName,
             userId: user?.uid,
         })
-        navigate("/");
+        navigate("/"); // navigate to home page
         
         
     }
