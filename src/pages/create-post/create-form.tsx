@@ -4,7 +4,8 @@ import {yupResolver} from "@hookform/resolvers/yup"
 import {addDoc, collection} from "firebase/firestore"
 import { auth, dataBase } from "../../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom"
+import { Link, Route, Routes } from "react-router-dom"
+
 
 interface createFormType {
     title: string;
@@ -30,6 +31,8 @@ export const CreateForm = () => {
             username: user?.displayName,
             userId: user?.uid,
         })
+        
+        
     }
     return (
         <div>
@@ -40,8 +43,9 @@ export const CreateForm = () => {
                 <textarea placeholder="Description..." {...register("description")} />
                 <p className="error" style={{color: "red"}}>{errors.description?.message}</p>
                 
-                <Link to="/"><input className="submit" type="submit" /></Link>
+                <input className="submit" type="submit" />
             </form>
+            
         </div>
     )
 }
