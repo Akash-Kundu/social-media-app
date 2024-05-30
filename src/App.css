@@ -1,0 +1,221 @@
+.App {
+  text-align: center;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #333;
+  
+}
+
+.navbar {
+  background-color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 36px;
+}
+
+.links {
+  display: flex;
+}
+
+.links a {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+  padding: 10px;
+}
+
+.links a:hover {
+  background-color: #555;
+  border-radius: 5px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+}
+
+.user p {
+  color: white;
+  margin-right: 10px;
+}
+
+.user img {
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.logout-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.logout-button:hover {
+  background-color: #0056b3;
+}
+
+.sign-in-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.sign-in-button:hover {
+  background-color: #0056b3;
+}
+
+.form-container {
+  background-color: #bfeaff;
+  padding: 20px;
+  border-radius: 25px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  margin: 90px auto;
+}
+
+.form-container h1 {
+  font-weight: 700;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.form-container label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.form-container input, .form-container textarea {
+  width: 100%;
+  padding: 20px;
+  font-size: 25px;
+  border: 1px solid #cccccccf;
+  border-radius: 15px;
+  margin-bottom: 24px;
+  box-sizing: border-box;
+  margin-top: 20px;
+}
+
+.form-container input:focus,
+.form-container textarea:focus {
+  border-color: #007bff;
+  outline: none;
+  
+}
+
+.form-container .submit {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  width: 166px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.form-container .submit:hover {
+  background-color: #0056b3;
+}
+
+.form-container .error {
+  color: red;
+  font-size: 14px;
+  margin-top: -15px;
+  margin-bottom: 15px;
+}
+
+.home-page {
+  display: flex;
+  flex-basis: 23%;
+  justify-content: space-evenly;
+  align-items: stretch;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.post-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.post-container {
+  color: #002751;
+  width: 300px;
+  background-color: #68B1FF;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.post-container.title {
+  margin-bottom: 10px;
+}
+
+.post-container.title h1 {
+  
+  font-size: 20px;
+  margin: 0;
+}
+
+.post-container.body {
+  margin-bottom: 10px;
+}
+
+.post-container.body p {
+  margin: 0;
+}
+
+.post-container.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post-container.footer p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.like-button {
+  background-color: #fff;
+  border: #68B1FF;
+  padding: 10px 20px;
+  font-size: 25px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.like-button:hover {
+  background-color: #5D3FD3;
+  
+}
+
+.like-button:active {
+  color: #007bff;
+}
