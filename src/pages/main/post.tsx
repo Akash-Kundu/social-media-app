@@ -11,6 +11,9 @@ import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { dataBase, auth } from "../../config/firebase";
 import { Post as IPost } from "./main";
+import * as yup from "yup"
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 interface Props {
     post: IPost;
@@ -21,15 +24,38 @@ interface Like {
     userId: string;
 }
 
+interface Comment {
+    commentText: string;
+    userName?: string;
+    userId?: string
+}
+
 export const Post = (props: Props) => {
     const { post } = props;
     const [user] = useAuthState(auth);
 
+    const schema = yup.object().shape({
+        commentText: yup.string().required("Cannot Pass Empty Comment")
+    })
+    const { register, handleSubmit, formState: { errors } } = useForm<Comment>({
+        resolver: yupResolver(schema)
+    })
+    const [comments, setComments] = useState<Comment[] | null>(null)
+
+
     const [likes, setLikes] = useState<Like[] | null>(null);
-
     const likesRef = collection(dataBase, "likes");
-
     const likesDoc = query(likesRef, where("postId", "==", post.id));
+
+    const commentRef = collection(dataBase, "comment")
+    const onCreateComment = async (data: Comment) => {
+        await addDoc(commentRef, {
+            ...data,
+            userName: user?.displayName,
+            userId: user?.uid,
+            postId: post.id
+        })
+    }
 
     const getLikes = async () => {
         const data = await getDocs(likesDoc);
@@ -79,26 +105,58 @@ export const Post = (props: Props) => {
 
     const hasUserLiked = likes?.find((like) => like.userId === user?.uid);
 
+    const hasUserCommented = comments?.find((comment) => comment.userId === user?.uid);
+
+
+    const getComments = async () => {
+        const data = await getDocs(query(commentRef, where("postId", "==", post.id)))
+        setComments(data.docs.map((doc) => ({ commentText: doc.data().commentText, userName: doc.data().userName, userId: doc.data().userId })))
+    }
+
     useEffect(() => {
         getLikes();
+        getComments()
     }, []);
 
     return (
         <div className="post-grid">
             <div className="post-container">
+
                 <div className="title">
                     <h1> {post.title}</h1>
                 </div>
+
                 <div className="body">
                     <p> {post.description} </p>
                 </div>
 
                 <div className="footer">
+
                     <p> @{post.username} </p>
                     <button className="like-button" onClick={hasUserLiked ? removeLike : addLike}>
                         {hasUserLiked ? <>&#128078;</> : <>&#128077;</>}{" "}
                     </button>
                     {likes && <p> Likes: {likes?.length} </p>}
+
+                    <h2>Comments</h2>
+                    {comments?.map((comment, index) => (
+                        <p>
+                            @{comment.userName} : {comment.commentText}
+                        </p>
+
+                    ))}
+
+                    {hasUserCommented ? <div></div> : <>
+                        <form onSubmit={handleSubmit(onCreateComment)}>
+
+                            <input type="text" placeholder="Add Comment" {...register("commentText")} />
+                            <p style={{ color: "red" }}>{errors.commentText?.message}</p>
+
+                            <input type="submit" />
+                        </form>
+                    </>}
+
+
                 </div>
             </div>
         </div>
