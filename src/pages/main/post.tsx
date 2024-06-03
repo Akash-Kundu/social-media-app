@@ -127,7 +127,7 @@ export const Post = (props: Props) => {
   useEffect(() => {
     getLikes();
     getComments();
-  }, [getComments]);
+  }, []);
 
   return (
     <div className="post-grid">
