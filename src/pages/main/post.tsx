@@ -163,13 +163,14 @@ export const Post = (props: Props) => {
             <>
               <form onSubmit={handleSubmit(onCreateComment)}>
                 <input
+                  classname="comment-field"
                   type="text"
                   placeholder="Add Comment"
                   {...register("commentText")}
                 />
                 <p style={{ color: "red" }}>{errors.commentText?.message}</p>
 
-                <input type="submit" />
+                <input type="submit" value="Comment" className="comment-button" />
               </form>
             </>
           )}
